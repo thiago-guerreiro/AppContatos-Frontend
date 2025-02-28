@@ -22,4 +22,8 @@ export class PessoaService {
     return this.http.get<Response<Pessoa>>(this.apiUrl, { params });
   }
 
+  salvarPessoa(pessoa: Partial<Pessoa>) {
+    return this.http.post<Pessoa>(this.apiUrl, pessoa);
+  }
+
 }

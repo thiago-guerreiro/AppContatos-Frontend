@@ -1,0 +1,37 @@
+<div class="container p-5">
+  <form [formGroup]="contatoForm" (ngSubmit)="salvarContato()">
+
+    <div class="mb-5">
+      <label for="tipoContato" class="form-label">Tipo de Contato:</label>
+      <select id="tipoContato" formControlName="tipoContato" class="form-select">
+        <option *ngFor="let tipo of tiposContato" [value]="tipo">{{ tipo }}</option>
+      </select>
+      <div *ngIf="contatoForm.get('tipoContato')?.touched && contatoForm.get('tipoContato')?.invalid" class="text-danger">
+        <small *ngIf="contatoForm.get('tipoContato')?.hasError('required')">Tipo de contato é obrigatório.</small>
+      </div>
+    </div>
+
+    <div *ngIf="contatoForm.get('tipoContato')?.value === 'CELULAR'" class="mb-5">
+      <label for="contato" class="form-label">Contato (Celular):</label>
+      <input type="text" id="contato" formControlName="contato" class="form-control" placeholder="Contato">
+      <div *ngIf="contatoForm.get('contato')?.touched && contatoForm.get('contato')?.invalid" class="text-danger">
+        <small *ngIf="contatoForm.get('contato')?.hasError('required')">Contato é obrigatório.</small>
+        <small *ngIf="contatoForm.get('contato')?.hasError('minlength')">Contato deve ter pelo menos 5 caracteres.</small>
+      </div>
+    </div>
+
+    <div *ngIf="exibirFormularioEmail()" class="mb-5">
+      <label for="contato" class="form-label">E-mail:</label>
+      <input type="text" id="contato" formControlName="contato" class="form-control" placeholder="E-mail">
+      <div *ngIf="contatoForm.get('contato')?.touched && contatoForm.get('contato')?.invalid" class="text-danger">
+        <small *ngIf="contatoForm.get('contato')?.hasError('required')">E-mail é obrigatório.</small>
+        <small *ngIf="contatoForm.get('contato')?.hasError('minlength')">E-mail deve ter pelo menos 5 caracteres.</small>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-center mt-5">
+      <button type="submit" class="btn btn-primary" [disabled]="contatoForm.invalid">Salvar Contato</button>
+    </div>
+
+  </form>
+</div>
