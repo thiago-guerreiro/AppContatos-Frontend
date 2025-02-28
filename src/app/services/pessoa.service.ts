@@ -26,4 +26,8 @@ export class PessoaService {
     return this.http.post<Pessoa>(this.apiUrl, pessoa);
   }
 
+  excluir(id: number) {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
+
 }

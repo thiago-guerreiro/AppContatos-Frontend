@@ -54,4 +54,12 @@ export class ListagemPessoasComponent {
     }
   }
 
+  excluirPessoa(id: number): void {
+    if (confirm('Deseja realmente excluir esta pessoa?')) {
+      this.pessoaService.excluir(id).subscribe(() => {
+        this.carregarPessoas();
+      });
+    }
+  }
+
 }
