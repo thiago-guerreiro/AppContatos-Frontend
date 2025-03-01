@@ -13,6 +13,7 @@ import { ListagemPessoasComponent } from './pages/listagem-pessoas/listagem-pess
 import { ContatoService } from './services/contato.service';
 import { PessoaService } from './services/pessoa.service';
 import { SalvarContatoComponent } from './pages/salvar-contato/salvar-contato.component';
+import { AtualizarPessoaComponent } from './pages/atualizar-pessoa/atualizar-pessoa.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { SalvarContatoComponent } from './pages/salvar-contato/salvar-contato.co
     HerosectionComponent,
     ListagemPessoasComponent,
     CadastrarPessoaComponent,
-    SalvarContatoComponent
+    SalvarContatoComponent,
+    AtualizarPessoaComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,77 @@
+<div class="container p-5">
+  <form [formGroup]="pessoaForm" (ngSubmit)="salvar()">
+
+    <div class="mb-5">
+      <label for="nome" class="form-label">Nome:</label>
+      <input type="text" id="nome" class="form-control" formControlName="nome" placeholder="Nome">
+      <div *ngIf="pessoaForm.get('nome')?.invalid && pessoaForm.get('nome')?.touched" class="text-danger">
+        Nome é obrigatório.
+      </div>
+    </div>
+
+    <div class="row mb-5">
+      <div class="col">
+        <label for="cep" class="form-label">CEP:</label>
+        <input type="text" id="cep" class="form-control" formControlName="cep" (blur)="buscarCep()" placeholder="CEP">
+        <div *ngIf="pessoaForm.get('cep')?.invalid && pessoaForm.get('cep')?.touched" class="text-danger">
+          O CEP é obrigatório e deve ter no mínimo 8 caracteres.
+        </div>
+      </div>
+      <div class="col">
+        <label for="endereco" class="form-label">Endereço:</label>
+        <input type="text" id="endereco" class="form-control" formControlName="endereco" placeholder="Endereço">
+        <div *ngIf="pessoaForm.get('endereco')?.invalid && pessoaForm.get('endereco')?.touched" class="text-danger">
+          Endereço é obrigatório.
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-5">
+      <div class="col">
+        <label for="cidade" class="form-label">Cidade:</label>
+        <input type="text" id="cidade" class="form-control" formControlName="cidade" placeholder="Cidade">
+        <div *ngIf="pessoaForm.get('cidade')?.invalid && pessoaForm.get('cidade')?.touched" class="text-danger">
+          Cidade é obrigatória.
+        </div>
+      </div>
+      <div class="col">
+        <label for="uf" class="form-label">UF:</label>
+        <input type="text" id="uf" class="form-control" formControlName="uf" placeholder="UF">
+        <div *ngIf="pessoaForm.get('uf')?.invalid && pessoaForm.get('uf')?.touched" class="text-danger">
+          UF é obrigatória.
+        </div>
+      </div>
+    </div>
+
+    <h5>Contatos</h5>
+    <div formArrayName="contatos">
+      <div *ngFor="let contato of contatosFormArray.controls; let i = index" [formGroupName]="i" class="mb-3 border p-3">
+        <div class="row g-2">
+          <div class="col-md-4">
+            <select formControlName="tipoContato" class="form-select">
+              <option *ngFor="let tipo of tiposContato" [value]="tipo">{{tipo}}</option>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <input type="text" formControlName="contato" class="form-control" placeholder="Contato">
+            <div *ngIf="contato.get('contato')?.invalid && contato.get('contato')?.touched" class="text-danger">
+              Contato é obrigatório e deve ter pelo menos 5 caracteres.
+            </div>
+          </div>
+          <div class="col-md-2">
+            <button type="button" class="btn btn-danger w-100" (click)="removerContato(i)">Remover</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-center mt-3">
+      <button type="button" class="btn btn-secondary w-100" (click)="adicionarContato()">Adicionar Contato</button>
+    </div>
+
+    <div class="d-flex justify-content-center mt-5">
+      <button type="submit" class="btn btn-primary" [disabled]="pessoaForm.invalid">Salvar</button>
+    </div>
+
+  </form>
+</div>

@@ -26,6 +26,14 @@ export class PessoaService {
     return this.http.post<Pessoa>(this.apiUrl, pessoa);
   }
 
+  getPessoa(id: number): Observable<Pessoa> {
+    return this.http.get<Pessoa>(`${this.apiUrl}/${id}`);
+  }
+
+  atualizarPessoa(id: number, pessoa: Partial<Pessoa>): Observable<Pessoa> {
+    return this.http.put<Pessoa>(`${this.apiUrl}/${id}`, pessoa);
+  }
+
   excluir(id: number) {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }

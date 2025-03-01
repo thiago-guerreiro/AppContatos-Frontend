@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 import { Contato } from '../interfaces/contato';
 
@@ -18,6 +19,10 @@ export class ContatoService {
 
   salvarContato(contato: Contato) {
     return this.http.post<Contato>(this.apiUrl, contato);
+  }
+
+  atualizarContato(id: number, contato: Contato): Observable<Contato> {
+    return this.http.put<Contato>(`${this.apiUrl}/${id}`, contato);
   }
 
 }

@@ -54,6 +54,10 @@ export class ListagemPessoasComponent {
     }
   }
 
+  editarPessoa(id: number): void {
+    this.router.navigate(['/pessoas/editar', id]);
+  }
+
   excluirPessoa(id: number): void {
     if (confirm('Deseja realmente excluir esta pessoa?')) {
       this.pessoaService.excluir(id).subscribe(() => {

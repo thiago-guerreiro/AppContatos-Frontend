@@ -25,7 +25,7 @@
           <td>{{ getEmail(pessoa) }}</td>
           <td>
             <div class="d-flex justify-content-evenly">
-              <button type="button" class="btn btn-primary">Editar</button>
+              <button type="button" class="btn btn-primary" (click)="editarPessoa(pessoa.id)">Editar</button>
               <button type="button" class="btn btn-danger" (click)="excluirPessoa(pessoa.id)">Excluir</button>
             </div>
           </td>
